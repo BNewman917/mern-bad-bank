@@ -5,7 +5,7 @@ import Home from "../pages/Home.jsx";
 import { CreateAccount } from "../pages/CreateAccount";
 import Deposit from "../pages/Deposit";
 import Withdraw from "../pages/Withdraw";
-import Login from "../pages/Login";
+import { Login } from "../pages/Login";
 import UserData from "../pages/UserData";
 import Balance from "../pages/Balance.jsx";
 

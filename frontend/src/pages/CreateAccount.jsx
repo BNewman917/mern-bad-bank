@@ -11,7 +11,7 @@ const passWrap = {
 const eyeStyle = {
     position: "absolute",
     right: "1rem",
-    top: ".5rem",
+    top: ".3rem",
 };
 
 export const CreateAccount = () => {
@@ -84,13 +84,13 @@ export const CreateAccount = () => {
                         />
                         <div style={eyeStyle}>
                             <BsEyeSlashFill
-                                fontSize={"1.25rem"}
+                                fontSize={"1.5rem"}
                                 onClick={togglePass}
                                 style={{ cursor: "pointer" }}
                                 hidden={showPass}
                             />
                             <BsEyeFill
-                                fontSize={"1.25rem"}
+                                fontSize={"1.5rem"}
                                 onClick={togglePass}
                                 style={{ cursor: "pointer" }}
                                 hidden={!showPass}

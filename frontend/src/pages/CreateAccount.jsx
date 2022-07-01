@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaUser } from "react-icons/fa";
-import { BsEyeSlash, BsEye } from "react-icons/bs";
+import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 import { UseCard } from "../components/partials/UseCard";
 
 const passWrap = {
@@ -14,7 +14,7 @@ const eyeStyle = {
     top: ".5rem",
 };
 
-function CreateAccount() {
+export const CreateAccount = () => {
     const [showPass, setShowPass] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
@@ -52,6 +52,7 @@ function CreateAccount() {
                         type="input"
                         className="form-control"
                         id="name"
+                        name="name"
                         placeholder="Enter name"
                         value={name}
                         onChange={onChange}
@@ -63,6 +64,7 @@ function CreateAccount() {
                         type="input"
                         className="form-control"
                         id="email"
+                        name="email"
                         placeholder="Enter email"
                         value={email}
                         onChange={onChange}
@@ -75,13 +77,25 @@ function CreateAccount() {
                             type={showPass ? "text" : "password"}
                             className="form-control"
                             id="password"
+                            name="password"
                             placeholder="Enter password"
                             value={password}
                             onChange={onChange}
                         />
-                        <i style={eyeStyle} onClick={togglePass}>
-                            {showPass ? BsEye : BsEyeSlash}
-                        </i>
+                        <div style={eyeStyle}>
+                            <BsEyeSlashFill
+                                fontSize={"1.25rem"}
+                                onClick={togglePass}
+                                style={{ cursor: "pointer" }}
+                                hidden={showPass}
+                            />
+                            <BsEyeFill
+                                fontSize={"1.25rem"}
+                                onClick={togglePass}
+                                style={{ cursor: "pointer" }}
+                                hidden={!showPass}
+                            />
+                        </div>
                     </div>
                     <br />
                     <button
@@ -95,6 +109,4 @@ function CreateAccount() {
             }
         />
     );
-}
-
-export default CreateAccount;
+};

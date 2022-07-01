@@ -90,7 +90,7 @@ export const Login = () => {
                         className="btn btn-outline-success"
                         onSubmit={onSubmit}
                     >
-                        Create account
+                        Log In
                     </button>
                 </>
             }

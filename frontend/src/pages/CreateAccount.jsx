@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { FaUser } from "react-icons/fa";
+import { register, reset } from "../features/auth/authSlice";
+import Spinner from "../components/Spinner";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 import { UseCard } from "../components/partials/UseCard";
+import axios from "axios";
 
 const passWrap = {
     display: "flex",
@@ -24,16 +30,74 @@ export const CreateAccount = () => {
 
     const { name, email, password } = formData;
 
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const { user, isLoading, isError, isSuccess, message } = useSelector(
+        (state) => state.auth
+    );
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(message);
+        }
+
+        dispatch(reset());
+    }, [user, isError, isSuccess, message, navigate, dispatch]);
+
+    function validate(field, label) {
+        const nameRegex = /^[a-zA-Z\-]+$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!field) {
+            toast.error("Error: " + label + " is required");
+            return false;
+        }
+        if (!nameRegex.test(name)) {
+            toast.error("Error: Please enter a valid name!");
+            return false;
+        }
+        if (!emailRegex.test(email)) {
+            toast.error("Error: Please enter a valid email!");
+            return false;
+        }
+        if (password.length < 8) {
+            toast.error("Error: Password must be at least 8 characters");
+            return false;
+        }
+        return true;
+    }
+
     const onChange = (e) =>
         setFormData((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value,
         }));
-    const onSubmit = (e) => e.preventDefault();
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const userData = {
+            name,
+            email,
+            password,
+        };
+
+        if (
+            !validate(name, "Name") ||
+            !validate(email, "Email") ||
+            !validate(password, "Password")
+        )
+            return;
+
+        dispatch(register(userData));
+    };
 
     const togglePass = () => {
         setShowPass(showPass ? false : true);
     };
+
+    if (isLoading) {
+        return <Spinner />;
+    }
 
     return (
         <UseCard
@@ -46,65 +110,66 @@ export const CreateAccount = () => {
             }
             body={
                 <>
-                    Name
-                    <br />
-                    <input
-                        type="input"
-                        className="form-control"
-                        id="name"
-                        name="name"
-                        placeholder="Enter name"
-                        value={name}
-                        onChange={onChange}
-                    />
-                    <br />
-                    Email
-                    <br />
-                    <input
-                        type="input"
-                        className="form-control"
-                        id="email"
-                        name="email"
-                        placeholder="Enter email"
-                        value={email}
-                        onChange={onChange}
-                    />
-                    <br />
-                    Password
-                    <br />
-                    <div style={passWrap}>
+                    <form onSubmit={onSubmit}>
+                        Name
+                        <br />
                         <input
-                            type={showPass ? "text" : "password"}
+                            type="input"
                             className="form-control"
-                            id="password"
-                            name="password"
-                            placeholder="Enter password"
-                            value={password}
+                            id="name"
+                            name="name"
+                            placeholder="Enter name"
+                            value={name}
                             onChange={onChange}
                         />
-                        <div style={eyeStyle}>
-                            <BsEyeSlashFill
-                                fontSize={"1.5rem"}
-                                onClick={togglePass}
-                                style={{ cursor: "pointer" }}
-                                hidden={showPass}
+                        <br />
+                        Email
+                        <br />
+                        <input
+                            type="input"
+                            className="form-control"
+                            id="email"
+                            name="email"
+                            placeholder="Enter email"
+                            value={email}
+                            onChange={onChange}
+                        />
+                        <br />
+                        Password
+                        <br />
+                        <div style={passWrap}>
+                            <input
+                                type={showPass ? "text" : "password"}
+                                className="form-control"
+                                id="password"
+                                name="password"
+                                placeholder="Enter password"
+                                value={password}
+                                onChange={onChange}
                             />
-                            <BsEyeFill
-                                fontSize={"1.5rem"}
-                                onClick={togglePass}
-                                style={{ cursor: "pointer" }}
-                                hidden={!showPass}
-                            />
+                            <div style={eyeStyle}>
+                                <BsEyeSlashFill
+                                    fontSize={"1.5rem"}
+                                    onClick={togglePass}
+                                    style={{ cursor: "pointer" }}
+                                    hidden={showPass}
+                                />
+                                <BsEyeFill
+                                    fontSize={"1.5rem"}
+                                    onClick={togglePass}
+                                    style={{ cursor: "pointer" }}
+                                    hidden={!showPass}
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <br />
-                    <button
-                        type="submit"
-                        className="btn btn-outline-success"
-                        onSubmit={onSubmit}
-                    >
-                        Create account
-                    </button>
+                        <br />
+                        <button
+                            type="submit"
+                            className="btn btn-outline-success"
+                        >
+                            Create account
+                        </button>
+                    </form>
                 </>
             }
         />

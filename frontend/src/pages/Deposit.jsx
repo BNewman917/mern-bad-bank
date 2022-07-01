@@ -1,7 +1,5 @@
 import React from "react";
 
-function Deposit() {
+export const Deposit = () => {
     return <div>Deposit</div>;
-}
-
-export default Deposit;
+};

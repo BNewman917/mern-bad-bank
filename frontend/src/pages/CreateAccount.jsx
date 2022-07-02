@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaUser } from "react-icons/fa";
-import { register, reset } from "../features/auth/authSlice";
+import { register, reset, logout } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
+import { FaSignInAlt, FaSignOutAlt, FaUserPlus } from "react-icons/fa";
 import { UseCard } from "../components/partials/UseCard";
-import axios from "axios";
+import { capitalize } from "../features/capitalize";
 
 const passWrap = {
     display: "flex",
@@ -36,17 +37,23 @@ export const CreateAccount = () => {
     const { user, isLoading, isError, isSuccess, message } = useSelector(
         (state) => state.auth
     );
+    const currentUser = localStorage.getItem("user");
 
     useEffect(() => {
         if (isError) {
             toast.error(message);
         }
-
         dispatch(reset());
     }, [user, isError, isSuccess, message, navigate, dispatch]);
 
+    const onChange = (e) =>
+        setFormData((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }));
+
     function validate(field, label) {
-        const nameRegex = /^[a-zA-Z\-]+$/;
+        const nameRegex = /^[a-zA-Z]+$/;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!field) {
             toast.error("Error: " + label + " is required");
@@ -67,13 +74,7 @@ export const CreateAccount = () => {
         return true;
     }
 
-    const onChange = (e) =>
-        setFormData((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value,
-        }));
-
-    const onSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const userData = {
             name,
@@ -87,30 +88,53 @@ export const CreateAccount = () => {
             !validate(password, "Password")
         )
             return;
-
         dispatch(register(userData));
     };
 
     const togglePass = () => {
+        console.log(isError);
         setShowPass(showPass ? false : true);
+    };
+
+    const handleLogout = () => {
+        sessionStorage.clear();
+        dispatch(logout());
     };
 
     if (isLoading) {
         return <Spinner />;
     }
 
-    return (
+    return currentUser ? (
+        <>
+            <UseCard
+                bgcolor="success"
+                opacity="10"
+                header={`Hello, ${capitalize(user.name)}!`}
+                body={
+                    <>
+                        <h4>You are logged in!</h4>
+                        <p>Log out if you want to use a different account.</p>
+                        <button
+                            type="submit"
+                            id="logOutButton"
+                            className="btn btn-outline-success"
+                            onClick={handleLogout}
+                        >
+                            <FaSignOutAlt /> Log Out
+                        </button>
+                    </>
+                }
+            />
+        </>
+    ) : (
         <UseCard
             bgcolor="success"
             opacity="10"
-            header={
-                <>
-                    <FaUser /> Create Account
-                </>
-            }
+            header={<>Create Account</>}
             body={
                 <>
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={handleSubmit}>
                         Name
                         <br />
                         <input
@@ -167,7 +191,8 @@ export const CreateAccount = () => {
                             type="submit"
                             className="btn btn-outline-success"
                         >
-                            Create account
+                            <FaUserPlus />
+                            {"   "}Create account
                         </button>
                     </form>
                 </>

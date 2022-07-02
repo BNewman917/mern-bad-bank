@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
-import { FaSignInAlt } from "react-icons/fa";
+import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { login, logout, reset } from "../features/auth/authSlice";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 import { UseCard } from "../components/partials/UseCard";
+import { capitalize } from "../features/capitalize";
 
 const passWrap = {
     display: "flex",
@@ -23,28 +27,87 @@ export const Login = () => {
 
     const { email, password } = formData;
 
+    const dispatch = useDispatch();
+
+    const { user, isError, message } = useSelector((state) => state.auth);
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(message);
+        }
+        dispatch(reset());
+    }, [user, isError, message, dispatch]);
+
     const onChange = (e) =>
         setFormData((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value,
         }));
-    const onSubmit = (e) => e.preventDefault();
+
+    function validate(field, label) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!field) {
+            toast.error("Error: " + label + " is required");
+            return false;
+        }
+        if (!emailRegex.test(email)) {
+            toast.error("Error: Please enter a valid email!");
+            return false;
+        }
+        return true;
+    }
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        const userData = {
+            email,
+            password,
+        };
+
+        if (!validate(email, "Email") || !validate(password, "Password"))
+            return;
+        dispatch(login(userData));
+    };
+
+    const handleLogout = () => {
+        console.log(JSON.stringify(user.name));
+        dispatch(logout());
+        dispatch(reset());
+    };
 
     const togglePass = () => {
         setShowPass(showPass ? false : true);
     };
 
-    return (
+    return user ? (
+        <>
+            <UseCard
+                bgcolor="success"
+                opacity="10"
+                header={`Hello, ${capitalize(user.name)}!`}
+                body={
+                    <>
+                        <h4>You are logged in!</h4>
+                        <p>Log out if you want to use a different account.</p>
+                        <button
+                            type="submit"
+                            id="logOutButton"
+                            className="btn btn-outline-success"
+                            onClick={handleLogout}
+                        >
+                            <FaSignOutAlt /> Log Out
+                        </button>
+                    </>
+                }
+            />
+        </>
+    ) : (
         <UseCard
             bgcolor="success"
             opacity="10"
-            header={
-                <>
-                    <FaSignInAlt /> Log In
-                </>
-            }
+            header={<>Log In</>}
             body={
-                <>
+                <form onSubmit={handleLogin}>
                     Email
                     <br />
                     <input
@@ -85,14 +148,10 @@ export const Login = () => {
                         </div>
                     </div>
                     <br />
-                    <button
-                        type="submit"
-                        className="btn btn-outline-success"
-                        onSubmit={onSubmit}
-                    >
-                        Log In
+                    <button type="submit" className="btn btn-outline-success">
+                        <FaSignInAlt /> Log In
                     </button>
-                </>
+                </form>
             }
         />
     );

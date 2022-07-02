@@ -15,7 +15,6 @@ const PopoverStyle = {
 
 export const NavBar = () => {
     const [title, setTitle] = useState("Home");
-    // const [expanded, setExpanded] = useState(false);
 
     useEffect(() => {
         document.title = title;

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { NavBar } from "./components/Navbar.jsx";
+import { NavBar } from "./components/Navbar";
 import { Home } from "./pages/Home.jsx";
 import { CreateAccount } from "./pages/CreateAccount";
 import { Deposit } from "./pages/Deposit";

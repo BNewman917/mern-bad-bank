@@ -6,6 +6,7 @@ import { login, logout, reset } from "../features/auth/authSlice";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 import { UseCard } from "../components/partials/UseCard";
 import { capitalize } from "../features/capitalize";
+import { Spinner } from "react-bootstrap";
 
 const passWrap = {
     display: "flex",
@@ -29,7 +30,9 @@ export const Login = () => {
 
     const dispatch = useDispatch();
 
-    const { user, isError, message } = useSelector((state) => state.auth);
+    const { user, isError, isLoading, message } = useSelector(
+        (state) => state.auth
+    );
 
     useEffect(() => {
         if (isError) {
@@ -73,11 +76,19 @@ export const Login = () => {
         console.log(JSON.stringify(user.name));
         dispatch(logout());
         dispatch(reset());
+        setFormData({
+            email: "",
+            password: "",
+        });
     };
 
     const togglePass = () => {
         setShowPass(showPass ? false : true);
     };
+
+    if (isLoading) {
+        return <Spinner />;
+    }
 
     return user ? (
         <>
@@ -87,7 +98,7 @@ export const Login = () => {
                 header={`Hello, ${capitalize(user.name)}!`}
                 body={
                     <>
-                        <h4>You are logged in!</h4>
+                        <h4>Would you like to log out?</h4>
                         <p>Log out if you want to use a different account.</p>
                         <button
                             type="submit"

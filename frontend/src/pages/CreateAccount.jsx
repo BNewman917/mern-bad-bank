@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { FaUser } from "react-icons/fa";
 import { register, reset, logout } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
-import { FaSignInAlt, FaSignOutAlt, FaUserPlus } from "react-icons/fa";
+import { FaSignOutAlt, FaUserPlus } from "react-icons/fa";
 import { UseCard } from "../components/partials/UseCard";
 import { capitalize } from "../features/capitalize";
 
@@ -99,6 +98,11 @@ export const CreateAccount = () => {
     const handleLogout = () => {
         sessionStorage.clear();
         dispatch(logout());
+        setFormData({
+            name: "",
+            email: "",
+            password: "",
+        });
     };
 
     if (isLoading) {

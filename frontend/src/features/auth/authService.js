@@ -16,12 +16,8 @@ const register = async (userData) => {
 // Login user
 const login = async (userData) => {
     const response = await axios.post(API_URL + "login", userData);
-    console.log("-------------");
-    console.log(response.data);
-    console.log("-------------");
 
     if (response.data) {
-        console.error("Setting local storage");
         localStorage.setItem("user", JSON.stringify(response.data));
     }
 

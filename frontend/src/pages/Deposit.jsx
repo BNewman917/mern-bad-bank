@@ -48,63 +48,38 @@ export const Deposit = () => {
     };
 
     return (
-        <>
-            {user ? (
-                <UseCard
-                    bgcolor="success"
-                    opacity="10"
-                    onLoad={console.log(user.name)}
-                    header="Make A Deposit"
-                    body={
-                        <>
-                            <h4>Hello, {capitalize(user.name)}!</h4>
-                            <h5>
-                                Your balance is: $
-                                {user.balance.toLocaleString()}
-                            </h5>
-                            <form onSubmit={handleDeposit}>
-                                <input
-                                    style={{ marginTop: "1rem" }}
-                                    type="input"
-                                    className="form-control"
-                                    id="deposit"
-                                    placeholder="Enter amount"
-                                    onChange={(e) => {
-                                        setAmount(e.currentTarget.value);
-                                        setDisabled(false);
-                                    }}
-                                />
-                                <button
-                                    disabled={disabled}
-                                    style={{ marginTop: "1rem" }}
-                                    type="submit"
-                                    className="btn btn-outline-success"
-                                >
-                                    Deposit
-                                </button>
-                            </form>
-                        </>
-                    }
-                />
-            ) : (
-                <UseCard
-                    bgcolor="success"
-                    opacity="10"
-                    header="Error"
-                    body={
-                        <>
-                            <h4>You are not logged in!</h4>
-                            <p>
-                                Please{" "}
-                                <a style={linkStyle} href="#/login">
-                                    log in
-                                </a>{" "}
-                                to make a deposit.
-                            </p>
-                        </>
-                    }
-                />
-            )}
-        </>
+        <UseCard
+            bgcolor="success"
+            opacity="10"
+            onLoad={console.log(user.name)}
+            header="Make A Deposit"
+            body={
+                <>
+                    <h4>Hello, {capitalize(user.name)}!</h4>
+                    <h5>Your balance is: ${user.balance.toLocaleString()}</h5>
+                    <form onSubmit={handleDeposit}>
+                        <input
+                            style={{ marginTop: "1rem" }}
+                            type="input"
+                            className="form-control"
+                            id="deposit"
+                            placeholder="Enter amount"
+                            onChange={(e) => {
+                                setAmount(e.currentTarget.value);
+                                setDisabled(false);
+                            }}
+                        />
+                        <button
+                            disabled={disabled}
+                            style={{ marginTop: "1rem" }}
+                            type="submit"
+                            className="btn btn-outline-success"
+                        >
+                            Deposit
+                        </button>
+                    </form>
+                </>
+            }
+        />
     );
 };

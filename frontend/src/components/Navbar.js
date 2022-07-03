@@ -190,7 +190,7 @@ export const NavBar = () => {
                                         }}
                                         href="/userdata"
                                     >
-                                        All Data
+                                        User Data
                                     </Nav.Link>
                                 </OverlayTrigger>
                             </>

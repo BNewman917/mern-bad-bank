@@ -8,6 +8,8 @@ export const UserData = () => {
 
     return (
         <UseCard
+            bgcolor="success"
+            opacity="10"
             header="User Data"
             body={
                 <>

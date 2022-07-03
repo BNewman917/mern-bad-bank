@@ -1,9 +1,10 @@
 export const UseCard = (props) => {
     const classes = () => {
+        const align = props.align ? " text-" + props.align : "";
         const bg = props.bgcolor ? " bg-" + props.bgcolor : "";
         const txt = props.txtcolor ? " text-" + props.txtcolor : "";
         const opacity = props.opacity ? " bg-opacity-" + props.opacity : "";
-        return "card mb-3" + bg + txt + opacity;
+        return "card mb-3" + align + bg + txt + opacity;
     };
 
     return (

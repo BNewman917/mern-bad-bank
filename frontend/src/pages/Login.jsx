@@ -93,6 +93,7 @@ export const Login = () => {
     return user ? (
         <>
             <UseCard
+                align="center"
                 bgcolor="success"
                 opacity="10"
                 header={`Hello, ${capitalize(user.name)}!`}

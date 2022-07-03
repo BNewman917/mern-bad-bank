@@ -4,6 +4,7 @@ import bank from "../images/bank.png";
 export const Home = () => {
     return (
         <UseCard
+            align="center"
             txtcolor="black"
             header="A Better Bank"
             title="Welcome to the Better Bank!"

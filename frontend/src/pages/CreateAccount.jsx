@@ -112,6 +112,7 @@ export const CreateAccount = () => {
     return currentUser ? (
         <>
             <UseCard
+                align="center"
                 bgcolor="success"
                 opacity="10"
                 header={`Hello, ${capitalize(user.name)}!`}

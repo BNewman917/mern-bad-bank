@@ -57,6 +57,8 @@ export const Withdraw = () => {
         <>
             {user ? (
                 <UseCard
+                    bgcolor="success"
+                    opacity="10"
                     onLoad={console.log(user.name)}
                     header="Make A Withdrawal"
                     body={
@@ -92,6 +94,8 @@ export const Withdraw = () => {
                 />
             ) : (
                 <UseCard
+                    bgcolor="success"
+                    opacity="10"
                     header="Error"
                     body={
                         <>

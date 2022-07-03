@@ -51,6 +51,8 @@ export const Deposit = () => {
         <>
             {user ? (
                 <UseCard
+                    bgcolor="success"
+                    opacity="10"
                     onLoad={console.log(user.name)}
                     header="Make A Deposit"
                     body={
@@ -86,6 +88,8 @@ export const Deposit = () => {
                 />
             ) : (
                 <UseCard
+                    bgcolor="success"
+                    opacity="10"
                     header="Error"
                     body={
                         <>

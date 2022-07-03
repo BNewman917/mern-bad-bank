@@ -4,11 +4,12 @@
   "description": "MERN full-stack banking app",
   "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "server": "nodemon backend/server.js",
-    "client": "npm start --prefix frontend",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=1 npm install --prefix frontend && npm run build --prefix frontend"
-  },
+     "dev": "react-scripts start",
+      "start": "serve -s build",
+       "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+         "eject": "react-scripts eject",
+          "heroku-postbuild": "NPM_CONFIG_PRODUCTION=1 npm install --prefix frontend && npm run build --prefix frontend" },
   "author": "Brent",
   "license": "MIT",
   "dependencies": {
@@ -20,7 +21,8 @@
     "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.4.1"
+    "mongoose": "^6.4.1",
+    "serve": "^13.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.18"

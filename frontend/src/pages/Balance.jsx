@@ -5,6 +5,9 @@ import { useSelector } from "react-redux";
 
 export const Balance = () => {
     const { user } = useSelector((state) => state.auth);
+    console.error("------------------user------------------");
+    console.warn(`This is balance page for user: ${user.name}`);
+    console.error("------------------user------------------");
 
     return (
         <UseCard

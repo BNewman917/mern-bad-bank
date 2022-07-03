@@ -1,13 +1,7 @@
 import { React } from "react";
 import { UseCard } from "../components/partials/UseCard";
 import { capitalize } from "../features/capitalize";
-import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-
-const linkStyle = {
-    TextDecoration: "none",
-    color: "#E69420",
-};
 
 export const Balance = () => {
     const { user } = useSelector((state) => state.auth);

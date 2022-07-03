@@ -1,5 +1,4 @@
 import { UseCard } from "../components/partials/UseCard";
-import bank from "../images/bank.png";
 
 export const Home = () => {
     return (
@@ -14,7 +13,6 @@ export const Home = () => {
                     <img
                         src="https://img.icons8.com/external-photo3ideastudio-solid-photo3ideastudio/512/000000/external-bank-public-service-photo3ideastudio-solid-photo3ideastudio.png"
                         className="img-fluid"
-                        alt="Responsive image"
                     />
                     <br />
                     <div

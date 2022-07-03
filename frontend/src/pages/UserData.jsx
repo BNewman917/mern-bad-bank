@@ -1,6 +1,5 @@
 import { UseCard } from "../components/partials/UseCard";
 import { capitalize } from "../features/capitalize";
-import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 
 export const UserData = () => {

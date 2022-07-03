@@ -34,7 +34,7 @@ export const NavBar = () => {
             <Container>
                 <Navbar.Brand>
                     <h2>
-                        BadBank
+                        BetterBank
                         <sub style={{ fontSize: ".75rem" }}> byBrent</sub>
                     </h2>
                 </Navbar.Brand>

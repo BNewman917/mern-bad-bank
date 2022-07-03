@@ -5,9 +5,9 @@ export const Home = () => {
     return (
         <UseCard
             txtcolor="black"
-            header="Bad Bank Landing Page"
-            title="Welcome to the Bad Bank!"
-            text="This is a simple bank application."
+            header="A Better Bank"
+            title="Welcome to the Better Bank!"
+            text="We were bad, but we got better."
             body={
                 <img src={bank} className="img-fluid" alt="Responsive image" />
             }

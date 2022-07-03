@@ -1,6 +1,6 @@
 {
   "name": "brent-newmanfullstackbankingapp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "MERN full-stack banking app",
   "main": "server.js",
   "scripts": {

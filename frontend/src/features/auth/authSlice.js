@@ -1,4 +1,3 @@
-import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import authService from "./authService";

@@ -8,9 +8,9 @@ const {
 } = require("../controllers/userController");
 const { protect } = require("../middleware/authMiddleware");
 
-router.route("/login").post(loginUser);
+router.route("/login").post(protect, loginUser);
 router.route("/me").get(protect, getMe);
 router.route("/").post(createUser);
-router.route("/:id").put(updateUser);
+router.route("/:id").put(protect, updateUser);
 
 module.exports = router;

@@ -200,10 +200,6 @@ export const CreateAccount = () => {
                             {"   "}Create account
                         </button>
                     </form>
-                    <>
-                        BetterBank was created for educational purposes. Please
-                        do not use your real account information.
-                    </>
                 </>
             }
         />

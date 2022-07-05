@@ -14,7 +14,7 @@ export const Home = () => {
             txtcolor="black"
             header="A Better Bank"
             title="Welcome to BetterBank!"
-            text="We were bad, but I got better."
+            text="We were bad, but we got better."
             body={
                 <>
                     <img

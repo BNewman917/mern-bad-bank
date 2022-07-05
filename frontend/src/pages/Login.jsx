@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { login, logout, reset } from "../features/auth/authSlice";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
+import { FaUserAltSlash } from "react-icons/fa";
 import { UseCard } from "../components/partials/UseCard";
 import { capitalize } from "../features/capitalize";
 import { Spinner } from "react-bootstrap";

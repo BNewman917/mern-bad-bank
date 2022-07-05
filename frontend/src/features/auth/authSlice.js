@@ -72,6 +72,25 @@ export const updateBalance = createAsyncThunk(
     }
 );
 
+// Delete user
+export const deleteUser = createAsyncThunk(
+    "user/delete",
+    async (id, thunkAPI) => {
+        try {
+            const token = thunkAPI.getState().auth.user.token;
+            return await authService.deleteUser(id, token);
+        } catch (error) {
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
 export const authSlice = createSlice({
     name: "auth",
     initialState,

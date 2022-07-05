@@ -46,11 +46,25 @@ const updateBalance = async (userData, token) => {
     return response.data;
 };
 
+// Delete user
+const deleteUser = async (userId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    const response = await axios.delete(API_URL + userId, config);
+
+    return response.data;
+};
+
 const authService = {
     register,
     logout,
     login,
     updateBalance,
+    deleteUser,
 };
 
 export default authService;

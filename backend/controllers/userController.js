@@ -83,6 +83,23 @@ const createUser = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc Delete user
+// @route DELETE /api/users/:id
+// @access Private
+const deleteUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+        res.status(404);
+        throw new Error("User not found");
+    }
+    if (res.user.is !== user.id) {
+        res.status(401);
+        throw new Error("You are not authorized to delete this user");
+    }
+    await user.remove();
+    res.status(200).json({ message: "User deleted" });
+});
+
 // @desc Update user by ID
 // @route PUT /api/users/:id
 // @access Private
@@ -130,4 +147,5 @@ module.exports = {
     getMe,
     createUser,
     updateUser,
+    deleteUser,
 };

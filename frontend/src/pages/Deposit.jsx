@@ -5,11 +5,6 @@ import { toast } from "react-toastify";
 import { capitalize } from "../features/capitalize";
 import { updateBalance } from "../features/auth/authSlice";
 
-const linkStyle = {
-    TextDecoration: "none",
-    color: "#E69420",
-};
-
 export const Deposit = () => {
     const [amount, setAmount] = useState(0);
     const [disabled, setDisabled] = useState(true);

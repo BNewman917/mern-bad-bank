@@ -86,7 +86,7 @@ export const deleteUser = createAsyncThunk(
                     error.response.data.message) ||
                 error.message ||
                 error.toString();
-            return thunkAPI.rejectWithValue(message);
+            thunkAPI.rejectWithValue(message);
         }
     }
 );
@@ -144,6 +144,19 @@ export const authSlice = createSlice({
                 state.user = action.payload;
             })
             .addCase(updateBalance.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+            })
+            .addCase(deleteUser.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(deleteUser.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.user = null;
+            })
+            .addCase(deleteUser.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;

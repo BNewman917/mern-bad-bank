@@ -29,9 +29,9 @@ Users can deposit, withdraw, or view account information from the corresponding 
 
 ## Future Plans
 
-- [ ] Add 'forgot password' route
-- [ ] Add 'delete user' route
-- [ ] Add admin functionality
+-   [ ] Add 'forgot password' route
+-   [x] Add 'delete user' route
+-   [ ] Add admin functionality
 
 ## MIT License
 

@@ -15,11 +15,21 @@ export const Deposit = () => {
 
     const validate = (field) => {
         if (!Number(field)) {
-            toast.error("Input type not valid. Please enter a number");
+            toast.error("Input type not valid. Please enter a number", {
+                position: "top-right",
+                autoClose: 2000,
+                closeOnClick: true,
+                pauseOnHover: false,
+            });
             return false;
         }
         if (Number(field) <= 0) {
-            toast.error("Please enter a positive value");
+            toast.error("Please enter a positive value", {
+                position: "top-right",
+                autoClose: 2000,
+                closeOnClick: true,
+                pauseOnHover: false,
+            });
             return false;
         }
         return true;
@@ -37,7 +47,13 @@ export const Deposit = () => {
         };
         dispatch(updateBalance(userData));
         toast.info(
-            `Your deposit of $${amount.toLocaleString("en-US")} was successful`
+            `Your deposit of $${amount.toLocaleString("en-US")} was successful`,
+            {
+                position: "top-right",
+                autoClose: 2000,
+                closeOnClick: true,
+                pauseOnHover: false,
+            }
         );
         setAmount(0);
     };

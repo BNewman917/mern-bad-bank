@@ -88,7 +88,12 @@ export const CreateAccount = () => {
         )
             return;
         dispatch(register(userData));
-        toast.success("Account created successfully!");
+        toast.success("Your account has been created successfully!", {
+            position: "top-right",
+            autoClose: 2000,
+            closeOnClick: true,
+            pauseOnHover: false,
+        });
     };
 
     const togglePass = () => {

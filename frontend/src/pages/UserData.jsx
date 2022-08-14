@@ -11,6 +11,8 @@ const deleteStyle = {
 
 export const UserData = () => {
     const [confirmDelete, setConfirmDelete] = useState(false);
+    const [redirect, setRedirect] = useState(false);
+    const [countdown, setCountdown] = useState(3);
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
@@ -18,15 +20,43 @@ export const UserData = () => {
         dispatch(deleteUser(user._id));
         dispatch(logout());
         dispatch(reset());
-        window.location.href = "/";
     };
 
     const onConfirmDelete = () => {
         onDelete();
         setConfirmDelete(false);
+        setRedirect(true);
+        timer();
     };
 
-    return (
+    const timer = () => {
+        setTimeout(() => {
+            setCountdown(2);
+        }, 1000);
+        setTimeout(() => {
+            setCountdown(1);
+        }, 2000);
+    };
+
+    return redirect ? (
+        <UseCard
+            bgcolor="success"
+            opacity="10"
+            header="User Deleted"
+            onLoad={setTimeout(() => {
+                setRedirect(false);
+                window.location.href = "/";
+            }, 3000)}
+            body={
+                <>
+                    <p>
+                        Your account has been deleted. You will be redirected to
+                        the home page in {countdown} seconds.
+                    </p>
+                </>
+            }
+        />
+    ) : (
         <>
             <UseCard
                 bgcolor="success"

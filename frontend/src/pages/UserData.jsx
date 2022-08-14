@@ -51,7 +51,7 @@ export const UserData = () => {
                 <>
                     <p>
                         Your account has been deleted. You will be redirected to
-                        the home page in {countdown} seconds.
+                        the Home page in <strong>{countdown}</strong> seconds.
                     </p>
                 </>
             }

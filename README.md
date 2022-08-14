@@ -22,6 +22,7 @@ This is my capstone project for MIT xPro Full Stack Coding Bootcamp.
 > Account Creation & User Data
 
 Users can log in or create a new account with a unique email from the corresponding page. User data is stored in a MongoDB Atlas database.
+User may delete account from the 'User Data' page.
 
 > Account
 
@@ -31,6 +32,7 @@ Users can deposit, withdraw, or view account information from the corresponding 
 
 -   [ ] Add 'forgot password' route
 -   [x] Add 'delete user' route
+-   [x] Add confirmation to delete user
 -   [ ] Add admin functionality
 
 ## MIT License

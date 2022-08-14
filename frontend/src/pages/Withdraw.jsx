@@ -22,6 +22,7 @@ export const Withdraw = () => {
                     autoClose: 2000,
                     closeOnClick: true,
                     pauseOnHover: false,
+                    pauseOnFocusLoss: false,
                 }
             );
             return false;
@@ -32,6 +33,7 @@ export const Withdraw = () => {
                 autoClose: 2000,
                 closeOnClick: true,
                 pauseOnHover: false,
+                pauseOnFocusLoss: false,
             });
             return false;
         }
@@ -41,6 +43,7 @@ export const Withdraw = () => {
                 autoClose: 2000,
                 closeOnClick: true,
                 pauseOnHover: false,
+                pauseOnFocusLoss: false,
             });
             return false;
         }
@@ -67,6 +70,7 @@ export const Withdraw = () => {
                 autoClose: 2000,
                 closeOnClick: true,
                 pauseOnHover: false,
+                pauseOnFocusLoss: false,
             }
         );
         setAmount(0);

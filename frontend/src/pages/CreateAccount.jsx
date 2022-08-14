@@ -40,7 +40,13 @@ export const CreateAccount = () => {
 
     useEffect(() => {
         if (isError) {
-            toast.error(message);
+            toast.error(message, {
+                position: "top-right",
+                autoClose: 2000,
+                closeOnClick: true,
+                pauseOnHover: false,
+                pauseOnFocusLoss: false,
+            });
         }
         dispatch(reset());
     }, [user, isError, isSuccess, message, navigate, dispatch]);
@@ -55,19 +61,43 @@ export const CreateAccount = () => {
         const nameRegex = /^[a-zA-Z]+$/;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!field) {
-            toast.error("Error: " + label + " is required");
+            toast.error("Error: " + label + " is required", {
+                position: "top-right",
+                autoClose: 2000,
+                closeOnClick: true,
+                pauseOnHover: false,
+                pauseOnFocusLoss: false,
+            });
             return false;
         }
         if (!nameRegex.test(name)) {
-            toast.error("Error: Please enter a valid name!");
+            toast.error("Error: Please enter a valid name!", {
+                position: "top-right",
+                autoClose: 2000,
+                closeOnClick: true,
+                pauseOnHover: false,
+                pauseOnFocusLoss: false,
+            });
             return false;
         }
         if (!emailRegex.test(email)) {
-            toast.error("Error: Please enter a valid email!");
+            toast.error("Error: Please enter a valid email!", {
+                position: "top-right",
+                autoClose: 2000,
+                closeOnClick: true,
+                pauseOnHover: false,
+                pauseOnFocusLoss: false,
+            });
             return false;
         }
         if (password.length < 8) {
-            toast.error("Error: Password must be at least 8 characters");
+            toast.error("Error: Password must be at least 8 characters", {
+                position: "top-right",
+                autoClose: 2000,
+                closeOnClick: true,
+                pauseOnHover: false,
+                pauseOnFocusLoss: false,
+            });
             return false;
         }
         return true;
@@ -93,6 +123,7 @@ export const CreateAccount = () => {
             autoClose: 2000,
             closeOnClick: true,
             pauseOnHover: false,
+            pauseOnFocusLoss: false,
         });
     };
 

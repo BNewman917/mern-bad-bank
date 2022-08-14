@@ -20,6 +20,7 @@ export const Deposit = () => {
                 autoClose: 2000,
                 closeOnClick: true,
                 pauseOnHover: false,
+                pauseOnFocusLoss: false,
             });
             return false;
         }
@@ -29,6 +30,7 @@ export const Deposit = () => {
                 autoClose: 2000,
                 closeOnClick: true,
                 pauseOnHover: false,
+                pauseOnFocusLoss: false,
             });
             return false;
         }
@@ -53,6 +55,7 @@ export const Deposit = () => {
                 autoClose: 2000,
                 closeOnClick: true,
                 pauseOnHover: false,
+                pauseOnFocusLoss: false,
             }
         );
         setAmount(0);

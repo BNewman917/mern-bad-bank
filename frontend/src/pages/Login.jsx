@@ -50,11 +50,23 @@ export const Login = () => {
     function validate(field, label) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!field) {
-            toast.error("Error: " + label + " is required");
+            toast.error("Error: " + label + " is required", {
+                position: "top-right",
+                autoClose: 2000,
+                closeOnClick: true,
+                pauseOnHover: false,
+                pauseOnFocusLoss: false,
+            });
             return false;
         }
         if (!emailRegex.test(email)) {
-            toast.error("Error: Please enter a valid email!");
+            toast.error("Error: Please enter a valid email!", {
+                position: "top-right",
+                autoClose: 2000,
+                closeOnClick: true,
+                pauseOnHover: false,
+                pauseOnFocusLoss: false,
+            });
             return false;
         }
         return true;

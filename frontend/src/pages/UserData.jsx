@@ -2,7 +2,6 @@ import { UseCard } from "../components/partials/UseCard";
 import { capitalize } from "../features/capitalize";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, deleteUser, reset } from "../features/auth/authSlice";
-import { toast } from "react-toastify";
 import { useState } from "react";
 
 const deleteStyle = {
@@ -20,6 +19,11 @@ export const UserData = () => {
         dispatch(logout());
         dispatch(reset());
         window.location.href = "/";
+    };
+
+    const onConfirmDelete = () => {
+        onDelete();
+        setConfirmDelete(false);
     };
 
     return (
@@ -63,7 +67,7 @@ export const UserData = () => {
                         className="btn mt-2 mx-5 btn-outline-danger"
                         id="transactionButton"
                         style={deleteStyle}
-                        onClick={onDelete}
+                        onClick={onConfirmDelete}
                     >
                         Confirm
                     </button>

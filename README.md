@@ -4,7 +4,9 @@ Try it out: [https://brent-newmanfullstackbankapp.herokuapp.com/](https://brent-
 
 ## About
 
-This is my capstone project for MIT xPro Full Stack Coding Bootcamp.
+This is my capstone project for MIT xPro Full Stack Coding Bootcamp. This Full Stack MERN Bank was created in React Redux using Node and Express to interact with a MongoDB Atlas database modeled using Mongoose.
+
+This app has complete CRUD functionality and uses JSON Web Tokens for authentication.
 
 ## Skills Used
 
@@ -27,6 +29,7 @@ User may delete account from the 'User Data' page.
 > Account
 
 Users can deposit, withdraw, or view account information from the corresponding pages. Transaction input is validated and user is notified of any errors.
+User may delete account from the User Data page. Upon confirmation, user will be redirected to the Home page.
 
 ## Future Plans
 
